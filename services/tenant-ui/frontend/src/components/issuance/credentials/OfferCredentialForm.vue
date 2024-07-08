@@ -239,14 +239,30 @@ const handleSubmit = async (isFormValid: boolean) => {
     return;
   }
   try {
+    // const payload = {
+    //   auto_issue: true,
+    //   auto_remove: false,
+    //   connection_id: formFields.selectedConnection.value,
+    //   cred_def_id: formFields.selectedCred.value,
+    //   credential_preview: {
+    //     '@type': 'issue-credential/1.0/credential-preview',
+    //     attributes: credentialValuesRaw.value,
+    //   },
+    //   trace: false,
+    // };
+
     const payload = {
       auto_issue: true,
       auto_remove: false,
       connection_id: formFields.selectedConnection.value,
-      cred_def_id: formFields.selectedCred.value,
       credential_preview: {
-        '@type': 'issue-credential/1.0/credential-preview',
+        '@type': 'issue-credential/2.0/credential-preview',
         attributes: credentialValuesRaw.value,
+      },
+      filter: {
+        indy: {
+          cred_def_id: formFields.selectedCred.value,
+        },
       },
       trace: false,
     };
